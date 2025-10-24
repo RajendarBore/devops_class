@@ -1,0 +1,41 @@
+# construction_progress_tracker.py
+
+import matplotlib.pyplot as plt
+
+def get_project_data():
+    project = {}
+    num_tasks = int(input("Enter number of project tasks: "))
+    
+    for i in range(num_tasks):
+        name = input(f"Enter name of task {i+1}: ")
+        total_work = float(input(f"Enter total work units for '{name}': "))
+        completed = float(input(f"Enter completed work units for '{name}': "))
+        project[name] = (completed, total_work)
+    
+    return project
+
+def calculate_progress(project):
+    total_work = sum(work for _, work in project.values())
+    total_completed = sum(done for done, _ in project.values())
+    progress = (total_completed / total_work) * 100 if total_work else 0
+    return progress
+
+def visualize_project(project):
+    names = list(project.keys())
+    progress_values = [(done / total) * 100 if total else 0 for done, total in project.values()]
+
+    plt.barh(names, progress_values)
+    plt.xlabel("Completion (%)")
+    plt.ylabel("Tasks")
+    plt.title("Construction Project Progress")
+    plt.xlim(0, 100)
+    plt.grid(True, linestyle="--", alpha=0.5)
+    plt.show()
+
+if __name__ == "__main__":
+    print("🏗 Construction Progress Tracker 🏗")
+    project = get_project_data()
+    progress = calculate_progress(project)
+    print(f"\nOverall Project Progress: {progress:.2f}%")
+    visualize_project(project)
+homepage{"ok"}

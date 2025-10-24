@@ -1,0 +1,9 @@
+USERNAME = "admin"
+PASSWORD = "password123"
+
+# HTML template
+login_page = """
+<!doctype html>
+<title>Login Page</title>
+<h2>Login</h2>
+<form method="POST">
